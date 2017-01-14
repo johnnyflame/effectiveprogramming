@@ -1,4 +1,23 @@
 import sys
+import itertools
+
+
+for i in itertools.product([0,1], repeat=5):
+    
+    print i
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 count = 0
 input_figures = ""
@@ -41,9 +60,11 @@ def searchSolution(input_list, target, left_to_right):
 
 
 def eval_left_to_right(input_list,target):
+    print "hello"
     
 
 def eval_normal(input_list,target):
+    print "Hello"
         
         
         
