@@ -1,34 +1,57 @@
 import sys
 
-
-input_data = ""
+count = 0
+input_figures = ""
 target = 0
-
-
-input_figures = sys.stdin.readline()
-target = sys.stdin.read(1)
-left_to_right = True if sys.stdin.read(1) is 'L' else False
-print input_figures
-print target
-print left_to_right
-
-
-
-
-
-
-
-
-
-
+left_to_right = False
 
 
 """
+Code for parsing, not robust against bad input
+How do I protect against it?
+"""
+
 for line in sys.stdin:
-    input_data += line
-print input_data
+    count = count + 1
+    #    print count
+    if count % 2 != 0:
+        input_list = line.split()
+    else:
+        target =  line.split()[0]
+        NL = line.split()[1]
+        left_to_right = True if NL is 'L' else False
+       
+        print input_list
+        print target, NL, left_to_right
+        
 
-"""
+   
+
+    
+    
+
+
+ 
+def searchSolution(input_list, target, left_to_right):
+    if left_to_right is True:
+        eval_left_to_right(input_list,target)
+    else:
+        eval_normal(input_list,target)
+
+
+
+def eval_left_to_right(input_list,target):
+    
+
+def eval_normal(input_list,target):
+        
+        
+        
+
+
+
+
+
 
 
 
@@ -41,9 +64,3 @@ print input_data
 3. add second token of line 2 to a boolean
 """
 
-# def calculation():
-    
-
-
-        
-    
