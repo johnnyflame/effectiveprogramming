@@ -1,27 +1,8 @@
 import sys
 import itertools
 
-# ''.join(itertools.imap(str, intList)) 
-
-    #    if len(x) == 1 return x
- 
- #   return (x)
-
-x = [1,2,3]
-target = 9
-
-"""
-Recursion design:
-
-Base case:
-
-When n == 3
-
-"""
 
 def evaluate_partial(input_list):
-   
-
 
     while len(input_list) > 3:
        # print"full list",input_list
@@ -33,14 +14,12 @@ def evaluate_partial(input_list):
     
 
 
-def eval_left_to_right(input_list,target):
-    
+def eval_left_to_right(input_list,target):    
     for i in itertools.product(["+","*"], repeat=len(input_list) - 1):
         combined_list = [None] * (len(input_list) + len(i))      
         combined_list[::2] = input_list
         combined_list[1::2] = i
-
-    #    print "TARGET:", target
+        
 
         if evaluate_partial(combined_list) == target:
             print ' '.join(map(str,combined_list))
@@ -50,24 +29,14 @@ def eval_left_to_right(input_list,target):
     return
 
    
-        
-      
-   
-    
-       
-
-        
-#eval_left_to_right(x,target)
-#combined_list.insert(0,evaluate_partial(first_three_items))
-
-
-
 def eval_normal(input_list,target):
     
     for i in itertools.product(["+","*"], repeat=len(input_list) - 1):
         output_line = [None] * (len(input_list) + len(i))
         output_line[::2] = input_list
         output_line[1::2] = i
+
+        
         out = ' '.join(map(str, output_line))
         result = eval(out)
 
