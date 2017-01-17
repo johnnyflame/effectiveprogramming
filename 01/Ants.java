@@ -23,6 +23,7 @@ public class Ants {
         HashMap<Point,Character> visitedTiles = new HashMap<Point,Character>();
         HashMap<Character,Integer> direction = new HashMap<Character,Integer>();
         Point currentTile = new Point(0,0);
+        Point nextTime;
         Character state = null;
         char stepDirection = 'N';
         Character newState = null;
@@ -36,24 +37,22 @@ public class Ants {
 
         while(steps>0){
 
-            System.out.println("\nwhere am I?   "+currentTile.toString());
-            System.out.println("have I been here? ->"+visitedTiles.containsKey(currentTile));
-                   
             state = visitedTiles.get(currentTile);
 
             if(state==null){ //not visited before -> default state
                 state = defaultState;
             }
-            System.out.println("I came "+stepDirection+" and here is: "+state);
 
-            
+            // getting new direction and state based on current state
             newState = dna.get(state)[direction.get(stepDirection)][1];
             stepDirection = dna.get(state)[direction.get(stepDirection)][0];
 
-            System.out.println("and now I go.. "+stepDirection);
-            System.out.println("this place turns: "+newState);
-            
-            visitedTiles.put(currentTile, newState); // adds or overwrites tile state
+            //adds tile or overwrites tile state
+            visitedTiles.put(currentTile, newState); 
+
+            // currentTile becomes a copy of itself to not overwrite the tile
+            // stored in visitedTimes when stepping 
+            currentTile = new Point(currentTile);
 
             switch (stepDirection){
                 case 'N': currentTile.move((int)currentTile.getX(),
@@ -107,18 +106,7 @@ public class Ants {
                 } else if(line.matches("\\d+")){ //if line is a number
                     output += line;
                     System.out.println(output);
-                    System.out.println(run(dna, defaultState, Integer.parseInt(line)));
-                    
-                    for(Character c: dna.keySet()){
-                        Character[][] a = dna.get(c);
-                        int i=0;
-                        for (Character[] b: a){
-                            System.out.print(c+"->"+i+" - ");
-                            System.out.println(Arrays.toString(b));
-                            i++;
-                        }
-                    }
-                        
+                    System.out.println(run(dna, defaultState, Integer.parseInt(line)));  
                     dna.clear();
                 }   
             } else {
