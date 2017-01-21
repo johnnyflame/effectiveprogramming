@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
+#define LOWER_BOUND 14371104
 
 /**
  * COSC326 Jan 2017
  * harmonious_numbers.c
+ * @version C89
  * @author Johnny Flame Lee
  * @ID 83924
  *
@@ -33,43 +36,28 @@ static int sum_divisors(int n){
       }
     }
   }
-
-  /*TODO:
-    ??? offset with magic number, need to fix */
-  sum += 1;
-  /*  printf("output: %d", sum);
-      printf("\n");
-  */
   return sum;
 }
 
 
-/*
-  Current problem:
-
-  1. determine if an amicable pair exist, if not, then terminate the loop
-
-*/
-
 
 int main(){
-
-
-  int min = 20000000;
   int i;
-  int last_result = 0;
-
-  for(i = 2;i < min;i++){
+  /*  clock_t start,end; 
+  start = clock();
+  */
+  for(i = 2;i <= LOWER_BOUND;i++){
     int tmp = sum_divisors(i);
-    if(sum_divisors(tmp) == i && tmp != i && last_result != i){
+    if(sum_divisors(tmp) == i && tmp > i){
       printf("%d %d",i,tmp);
-      printf("\n");
-      last_result = tmp;
-    
+      printf("\n");    
     }
   }
 
-
+  /*
+  end = clock();
+  fprintf(stderr, "%f\n", (end - start)/(double)CLOCKS_PER_SEC);
+  */
   return 1;
 }
 
