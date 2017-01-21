@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#define LOWER_BOUND 14371104
+#define LOWER_BOUND 2000000
 
 /**
  * COSC326 Jan 2017
@@ -22,10 +22,6 @@
 static int sum_divisors(int n){
   int i;
   int sum = 0;
-  /*
-    printf("input: %d", n);
-    printf("\n");
-  */
   for(i = 2; i <=sqrt(n) + 1;i++){
     if (n % i == 0){
       if (n/i == i){
@@ -43,21 +39,21 @@ static int sum_divisors(int n){
 
 int main(){
   int i;
-  /*  clock_t start,end; 
+  clock_t start,end; 
   start = clock();
-  */
+  
   for(i = 2;i <= LOWER_BOUND;i++){
     int tmp = sum_divisors(i);
-    if(sum_divisors(tmp) == i && tmp > i){
+    if(tmp > i && sum_divisors(tmp) == i){
       printf("%d %d",i,tmp);
       printf("\n");    
     }
   }
 
-  /*
+  
   end = clock();
   fprintf(stderr, "%f\n", (end - start)/(double)CLOCKS_PER_SEC);
-  */
+  
   return 1;
 }
 
