@@ -1,23 +1,22 @@
 from Tkinter import *
+import sys
 
-window_width = 1000
-window_height = 1000
+window_size = 1000
+
 
 master = Tk()
 
 master.title("Toothpicks")
-w = Canvas(master, width=window_width, height=window_height,bg = "white")
+w = Canvas(master, width=window_size, height=window_size,bg = "white")
 w.pack()
 
+def set_length(generation,ratio):
+    length = (window_size - 200) / ratio
+    if generation > 0:
+        length = length / generation
 
+    return length
 
-length = window_width / 10
-
-x1 = window_width/2 - length/2
-y1 = window_height/2
-x2 = window_width/2 + length/2
-y2 = window_height/2
-ratio = 1.5
 
 
 def toothpick_placement(n,x1,y1,x2,y2,length):
@@ -34,17 +33,31 @@ def toothpick_placement(n,x1,y1,x2,y2,length):
         toothpick_placement(n - 1,x1 - length/2,y2,x2 + length/2,y2,length)
 
 
+
+generation = 0
+ratio = 1
+
+generation = int(sys.argv[1])
+if len(sys.argv) == 3:
+    ratio = float(sys.argv[2])
+
+length = set_length(generation,ratio)
+
+x1 = window_size/2 - length/2
+y1 = window_size/2
+x2 = window_size/2 + length/2
+y2 = window_size/2
+
+
+
+
+toothpick_placement(generation,x1,y1,x2,y2,length)
+
+    
+
         
 
-
-toothpick_placement(5,x1,y1,x2,y2,length)
-
-
-def set_length(generation,ratio):
-    length = 1
-    for i in range(1,generation):
         
-
 
 
 
