@@ -1,22 +1,41 @@
 from Tkinter import *
 import sys
+import math
 
-window_size = 1000
 
+"""
+COSC326 JAN 2016
+
+toothpicks.py written in Python 2.7
+
+Author:
+Johnny Flame Lee
+
+ID:
+83924
+
+"""
+
+window_width = 1000
+window_height = 1000
+border = 50
 
 master = Tk()
 
 master.title("Toothpicks")
-w = Canvas(master, width=window_size, height=window_size,bg = "white")
+w = Canvas(master, width=window_width, height=window_height,bg = "white")
 w.pack()
 
+
 def set_length(generation,ratio):
-    length = (window_size - 200) / ratio
-    if generation > 0:
-        length = length / generation
+    denomonator = 1
+    for i in range(2,generation):
+        if i % 2 == 0:
+            denomonator = denomonator + ratio ** i
+        else:
+            denomonator = denomonator + ratio ** (i-1)
 
-    return length
-
+    return (window_width - border) / denomonator
 
 
 def toothpick_placement(n,x1,y1,x2,y2,length):
@@ -34,57 +53,22 @@ def toothpick_placement(n,x1,y1,x2,y2,length):
 
 
 
+
+        
 generation = 0
 ratio = 1
-
 generation = int(sys.argv[1])
 if len(sys.argv) == 3:
     ratio = float(sys.argv[2])
 
 length = set_length(generation,ratio)
 
-x1 = window_size/2 - length/2
-y1 = window_size/2
-x2 = window_size/2 + length/2
-y2 = window_size/2
-
-
+x1 = window_width/2 - length/2
+y1 = window_height/2
+x2 = window_width/2 + length/2
+y2 = window_height/2
 
 
 toothpick_placement(generation,x1,y1,x2,y2,length)
-
-    
-
-        
-
-        
-
-
-
-"""
-TODO:
-
-1. Add scale abilities for both window and ratio
-
-NOTE:
-
-starting length should be a function of generation and (optionally) the ratio
-
-function set_length(int generation, int ratio)
-
-if ratio < 1:
-  Make length big(ish) and window smallish
-if ratio > 1:
-  Make window big and length small(ish)
-
-
-2. Parse input from command-line
-
-"""
-
-
-
-
-
 
 mainloop()
