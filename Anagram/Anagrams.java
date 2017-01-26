@@ -10,25 +10,31 @@ import java.util.Comparator;
  * Finds anagrams of input using words in provided dictonary.
  * @author Frida Israelsson & Johnny Flame Lee
  */
-
 public class Anagrams{
     public static ArrayList <String> dictonary = new ArrayList<String>();
+    public static ArrayList <String> anagrams = new ArrayList<String>();
+    public static int max = 1;
 
-    public static void findAnagram(ArrayList<Character> l, ArrayList<String> a,
-                                   int n, int t){
-        if(l.isEmpty() && n<=t){ 
-            for(String s:a){
-                System.out.print(s+" ");
-            }
-            System.out.print("\n");
-        } else if (!l.isEmpty() && n==t){ 
+    public static void printAnagrams(){
+        for(int j=0; j<anagrams.size()-1; j++){
+            System.out.print(anagrams.get(j)+"\n");
+        }
+    }
+
+
+    public static void findAnagram(ArrayList<Character> l, StringBuilder a,
+                                   int n){
+        if(l.isEmpty() && n<=max){ 
+            anagrams.add(a.toString());
+        } else if (!l.isEmpty() && n==max){ 
             return;
         } else {
             for(String word:dictonary){ //for each word in the dictonary
                 boolean useWord = true;
-                if(a.size()==0 || word.length()<a.get(a.size()-1).length() ||
-                   (word.length()==a.get(a.size()-1).length()
-                    && word.compareTo(a.get(a.size()-1))>=0)){
+                if(a.length()==0 ||
+                   word.length()<a.substring(a.lastIndexOf(" ")+1).length() || 
+                   (word.length()==a.substring(a.lastIndexOf(" ")+1).length()
+                    && word.compareTo(a.substring(a.lastIndexOf(" ")+1))>=0)){
                     //if words have been added: the new word need to be shorter
                     //than the last or if the same length, come after in
                     //alphabetic order.
@@ -50,9 +56,12 @@ public class Anagrams{
                             }
                         }
                         if(useWord){
-                            ArrayList<String> a2 = new ArrayList<String>(a);
-                            a2.add(word);
-                            findAnagram(l2, a2, n+1, t);
+                            StringBuilder a2 = new StringBuilder(a);
+                            if(a2.length()>0){
+                                a2.append(" ");
+                            }
+                            a2.append(word);
+                            findAnagram(l2, a2, n+1);
                         }
                         
                     }
@@ -65,9 +74,10 @@ public class Anagrams{
     public static void main(String[] args){
         String input = args[0].toLowerCase().replaceAll("[^a-z]","");
         ArrayList <Character> letters = new ArrayList <Character>();
-        int nrWords = Integer.parseInt(args[1]);
-        ArrayList <String> anagram = new ArrayList <String>();
+        StringBuilder anagram = new StringBuilder();
         StringBuilder pattern = new StringBuilder();
+
+        max = Integer.parseInt(args[1]);
 
         if (input.length()>0){
             for(int i=0; i<input.length(); i++){
@@ -76,13 +86,13 @@ public class Anagrams{
 
             pattern.append("[a-z&&[^");
             for(char x='a'; x<='z'; x++){
-                boolean b=false;
+                boolean include=false;
                 for(char l:letters){
                     if(l==x){
-                        b=true;
+                        include=true;
                     }
                 }
-                if(!b){
+                if(!include){
                     pattern.append(x);
                 }
             }
@@ -106,7 +116,13 @@ public class Anagrams{
             Collections.sort(dictonary, sorter);
 
             if (dictonary.size()>0){
-                findAnagram(letters, anagram, 0, nrWords);
+                findAnagram(letters, anagram, 0);
+            }
+
+            //sort anagrams in order before printing
+            if (anagrams.size()>0){
+                Collections.sort(anagrams, Collections.reverseOrder(sorter));
+                printAnagrams();
             }
         } 
     }
