@@ -40,10 +40,12 @@ def toothpick_placement(n,x1,y1,x2,y2,length):
 toothpick_placement(5,x1,y1,x2,y2,length)
 
 
+'''
+
 def set_length(generation,ratio):
     length = 1
     for i in range(1,generation):
-        
+'''        
 
 
 

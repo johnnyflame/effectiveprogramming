@@ -49,4 +49,5 @@ public class Anagrams{
  * is the dictonary in alphabetic order?
  * use recursion? -> need to store/sort results.. or do we?
  * asuming ok to use strings here..?
+ * Should we build a tree? What kind? (B-tree? Trie? )
  */
