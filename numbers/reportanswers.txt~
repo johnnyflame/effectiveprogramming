@@ -1,0 +1,9 @@
+1.
+
+Integer overflow is a type of errors which occur when the result of an
+arithmetic operation exceeds the maximum size of the
+type used to represent the numbers, causing the result to "wrap around" the maximum
+value the type can represent and display an incorrect result.	  '
+
+2.
+

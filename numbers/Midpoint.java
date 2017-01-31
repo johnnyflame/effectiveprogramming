@@ -1,10 +1,11 @@
-
+import java.lang.*;
+import java.util.Random;
 
 
 /**
  * Midpoint.java
- *
- * Test cases the midpoint function.
+ * 
+ * @author Johnny Flame Lee, Frida Israelsson
  *
  */
 
@@ -16,59 +17,74 @@ public class Midpoint{
     
 
     public static void main (String [] args){
-
-	System.out.println(midpoint(INT_MAX,INT_MAX));
-
+	testCases();
     }
-    
-    // Can we assume that x and y will be ints? 
+
     public static strictfp int midpoint(int x, int y){
-	long temp = x + y;
-	System.out.println("Temp: " + temp);
-	return (int) temp / 2;
+	int a = min(x,y);
+	int b = max(x,y);
+	int result;
+
+	if (a == b) return a;
+	if(a < 0 && Math.abs(a) == b) return 0;
+	
+	result = a/2 + b/2;
+
+	if (a % 2 != 0 && b % 2 != 0)
+	    if(a > 0 && b >  0) result += 1;
+	    else if(a > 0 && b < 0 || a < 0 && b > 0){
+		result = result;
+	    }
+	    else{
+		result -= 1;
+	    }
+	
+	return result;
     }
 
 
 
     public static strictfp int min (int x, int y){
-	return x < y ? x : y;
+	return x <= y ? x : y;
     }
 
 
     public static strictfp int max (int x, int y){
-	return x > y ? x : y;
+	return x >= y ? x : y;
     }
 
-    public static void testSymmetric (int lowerbound, int upperbound){
-	for (int i = lowerbound;i < upperbound;i++){
-	    for(int j = lowerbound;j < upperbound;j++){
-		int a = midpoint(i,j);
-		int b = midpoint(j,i);
-		assert a == b;
+    /**
+     * Test cases
+     * 
+     * Test around borders and 0, then do a series of random inputs.
+     */
+    
+    public static void testCases (){
+	int input1,input2;
+	Random rand = new Random();
+
+	assert midpoint(INT_MAX,INT_MAX) == INT_MAX;
+	assert midpoint(INT_MIN,INT_MIN) == INT_MIN;
+	assert midpoint(INT_MAX,-INT_MAX) == 0;
+	assert midpoint(INT_MAX,0) == INT_MAX/2;
+	
+	
+	for(int i = 0;i < 100000; i++){
+	    input1 = rand.nextInt();
+	    input2 = rand.nextInt();
+	    
+	    assert midpoint(0,0) == 0;
+	    assert midpoint(input1,input2) == midpoint(input2,input1);	    
+	    if (input1 < input2){
+		int result = midpoint(input1,input2);
+		assert (input1 <= result && result <= input2); 	
 	    }
+	    assert midpoint(input1,input1) == input1;
+	    assert midpoint(input1,-input1) == 0;
+	    assert midpoint(input1,0) == input1/2;
+	    assert midpoint(input1,input2) == -midpoint(-input1,-input2);
+	
 	}
-    }   
+    
+    }
 }
-
-
-
-
-/*
-
-Tasks:
-
-1. Write the function. Make sure it is bullet-proof
-2. Write test cases. Make sure to test on sufficiently large input.
-3. Write the report explaining what goes wrong.
-
-
-strictfp definition and usage:
-
-Strictfp ensures that you get exactly the same results from your floating point calculations on every platform. 
-If you don't use strictfp, the JVM implementation is free to use extra precision where available.
-
-Basically, strictfp ensures that floating point arithmetic meets the standard of the IEEE 754, and is designed the make
-the operation portable. It achieves this by letting JVM do the calculation, as opposed to the native hardware(cpu) perform
-the calculation. This could lead to greater precision and reliability, at the cost of runtime speed. 
-
-*/

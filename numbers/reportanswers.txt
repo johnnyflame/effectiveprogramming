@@ -1,0 +1,45 @@
+1.
+
+Integer overflow is a type of errors which occur when the result of an
+arithmetic operation exceeds the maximum size of the data
+type used to represent the numbers, causing the result to "wrap around" the maximum
+value the type can represent and display an incorrect results.
+
+2.
+
+Integer overflow cannot be detected in Java, the arithmetic operators do not report the overflow and no run time exception is thrown.
+In C, it creates an undefined error. One would have to be mindful of this and check for overflow manually. 
+
+3.
+
+You can prevent integer overflow by being aware of the bounds of the data type used, and ensuring all calculations in an arithmetic
+operation are within this bound.
+
+4.
+
+I am confident that the code performs correctly for several reasons. Firstly, the input of the function is two legal values of type
+int,I divide the values first before adding them, so integer flow would be impossible. The confidence is also increased by testing
+the code against a large number of test cases.
+
+
+
+5.
+
+It seemed trivial at first. However, as more bugs were revealed by the test cases, it became apparent that
+careful thoughts were required in the writing of this function in order to make it more robust.
+
+6.
+
+We cannot assume that a program works unless we have tested it thoroughly.
+
+
+7.
+
+
+The first case of the result not being zero occurs because arithmetic overflow occurred, we know this because the value changes
+from positive to negative, which should never be the case when multiplying. 
+
+In the second case "inf" is displayed, indicating that the value has exceeded the values a float can represent.  
+
+8.
+
