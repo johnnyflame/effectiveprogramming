@@ -1,0 +1,10 @@
+
+
+def recursion(soFar):
+    check so far + new piece and add it
+    if (score so far is way worse than our best):
+        go home
+    if( the carpet is finished):
+        check if its better than best so far
+    for each part remaining in stock:
+        recursion(so far+new piece)
