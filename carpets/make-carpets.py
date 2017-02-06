@@ -86,7 +86,7 @@ def find_non_matches(list_1,list_2):
 
 
     
-def max_match(input_queue):
+def better_max_match(input_queue):
     global cost
     global result
 
@@ -134,6 +134,37 @@ def recursive_max(carpet_in_progress, next_piece, cost_so_far,available_stock):
     
     return
     
+
+
+"""
+Greedy strategy for implementing max matches, operates in O(n**n) time
+"""
+
+def greedy_max():
+    
+    global result
+    current_best_score = 0
+    
+    result.append(input_queue.popleft())
+    
+    for i in range(0,len(input_queue)):
+        while find_non_matches(result[-1],input_queue[i]) <
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def main():
 
