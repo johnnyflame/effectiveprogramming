@@ -5,6 +5,7 @@ import copy
 
 '''
 
+
 q = deque()
 result = []
 target_size = 4
@@ -74,6 +75,15 @@ def find_non_matches(list_1,list_2):
     return count
 
 
+
+
+
+
+
+
+
+
+
 """
 1. initialize a candidate solution (put it in a list/queue)
 2. Evaluate the cost of candidate solution
@@ -140,23 +150,45 @@ def recursive_max(carpet_in_progress, next_piece, cost_so_far,available_stock):
 Greedy strategy for implementing max matches, operates in O(n**n) time
 """
 
-def greedy_max():
+def greedy_max(input_queue):
     
-    global result
-    current_best_score = 0
-    
+    global result 
+    output_size = 0
+    used_list = [True] * len(input_queue) 
+
+  
     result.append(input_queue.popleft())
+    output_size = output_size + 1
     
     for i in range(0,len(input_queue)):
-        while find_non_matches(result[-1],input_queue[i]) <
+        candidate = input_queue[i]
+        score = find_non_matches(result[-1],candidate)
+        candidate_index = i
         
+        for j in range(i,len(input_queue)):
+            if used_list[j] and find_non_matches(result[-1], input_queue[j]) < score:
+                candidate = input_queue[j]
+                candidate_index = j
+            else:
+                input_queue[j].reverse()
+                if  used_list[j] and find_non_matches(result[-1], input_queue[j]) < score:
+                    candidate = input_queue[j]
+                    candidate_index = j
+                else:
+                    input_queue[j].reverse()
+
+            result.append(candidate)
+            used_list[candidate_index] = False
 
 
 
+    for item in result:
+        print item
 
+                    
 
-
-
+                    
+                    
 
 
 
@@ -177,9 +209,12 @@ def main():
         q.append(carpet_strip)
 
 
+
+    greedy_max(q)
 #    no_match(q,result,tries,len(q))
 
-    max_match(q)
+#    max_match(q)
+
 
     "Next step will be determined by the flag from input"
 
