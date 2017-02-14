@@ -3,7 +3,23 @@ import fileinput
 import copy
 import random
 import sys
+"""
+COSC326 2017
 
+Etude 4
+Carpets.py written in Python 2.7
+
+
+Author:
+Johnny Flame Lee, Frida Isrealsson, Max Jardine, Callum Grimmer
+
+
+This solutions works by using a greedy search strategy to find local optimum,
+then attempt to find better solution by iteration and replace the old solution
+with the new one if found. If nothing better is found after n iterations,
+it makes the assumption that a global optimum has been reached. 
+
+"""
 q = deque()
 result = []
 target_size = 0
@@ -11,11 +27,7 @@ tries = 0
 max_matches = 0
 current_matches = 0
 cost = 0
-"""
-no_match
 
-Use backtrack search? DFS? 
-"""
 
 # returns False if any matching squares are found
 def found_match(list_1,list_2):
@@ -75,75 +87,8 @@ def find_non_matches(list_1,list_2):
 
 
 
-
-
-
-
-
-
 """
-1. initialize a candidate solution (put it in a list/queue)
-2. Evaluate the cost of candidate solution
-3. Recursively search other combinations for better candidates
-4. Pruning off bad ends.
-
-
-"""
-
-
-
-    
-def better_max_match(input_queue):
-    global cost
-    global result
-
- 
-  
-    for i in range(0,target_size):
-        result.append(input_queue[i])
-        if i > 0:
-            cost = cost + find_non_matches(input_queue[i-1],input_queue[i])
-            print "\niteration: ", i, "\nResult list:"
-        for element in result:
-            print element
-        print "number of mismatches: ", cost
-
-    print "\ntotal mismatches: ", cost
-
-    for i in range (0,len(input_queue)):
-        carpet_in_progress = []
-      
-"""
-TODO: 
-
-Return here tomorrow
-
-
-
-
-"""
-
-
-def recursive_max(carpet_in_progress, next_piece, cost_so_far,available_stock):
-    global cost
-    global result
-
-    if len(carpet_in_progress) != 0:
-        cost_so_far = cost_so_far + find_non_matches(carpet_in_progress[-1],next_piece)
-        if cost_so_far >= cost:    
-            return
-    
-    carpet_in_progress.append(next_piece)
-    if len (carpet_in_progress) == target_size:
-        cost = cost_so_far
-        result = carpet_in_progress
-        return
-    return
-    
-
-
-"""
-Greedy strategy for implementing max matches, operates in O(n**n) time
+Greedy strategy for implementing max matches
 """
 
 def greedy_max(input_queue):
@@ -349,15 +294,5 @@ def main():
         print "Please give correct option"
         return
 
-    "Next step will be determined by the flag from input"
-
-
-    """
-    TODO:
-
-    IO parsing
-    Testing
-    Convert TABS to space
-    """
 
 main()
