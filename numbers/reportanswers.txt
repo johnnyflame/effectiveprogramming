@@ -43,3 +43,13 @@ In the second case "inf" is displayed, indicating that the value has exceeded th
 
 8.
 
+
+
+10:
+
+heron_area goes catastrophically wrong when a reaches 10 million. This is caused by catastrophic cacellation.
+
+Inside the function, we first get the variable s by the following operation:
+       s = (a+a+c) / 2.0
+
+Which cause the phenomon when a gets sufficiently large, c loses signifance and gets rounded down to zero. As a result of this, this operation makes s equal to a, which, subsequently leads to s-a = 0, causing the output to be multipled by zero, returning zero. 

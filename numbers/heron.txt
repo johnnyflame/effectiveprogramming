@@ -1,0 +1,21 @@
+
+0	Heron area: 4.330127e-01 	Base height area: 4.330127e-01
+1	Heron area: 4.993746e+00 	Base height area: 4.993746e+00
+2	Heron area: 4.999937e+01 	Base height area: 4.999937e+01
+3	Heron area: 4.999999e+02 	Base height area: 4.999999e+02
+4	Heron area: 5.000000e+03 	Base height area: 5.000000e+03
+5	Heron area: 5.000000e+04 	Base height area: 5.000000e+04
+6	Heron area: 5.000000e+05 	Base height area: 5.000000e+05
+7	Heron area: 0.000000e+00 	Base height area: 5.000000e+06
+8	Heron area: 0.000000e+00 	Base height area: 5.000000e+07
+9	Heron area: 0.000000e+00 	Base height area: 5.000000e+08
+10	Heron area: 0.000000e+00 	Base height area: 5.000000e+09
+11	Heron area: 0.000000e+00 	Base height area: 5.000000e+10
+12	Heron area: 0.000000e+00 	Base height area: 5.000000e+11
+13	Heron area: 0.000000e+00 	Base height area: 5.000000e+12
+14	Heron area: 0.000000e+00 	Base height area: 5.000000e+13
+15	Heron area: 0.000000e+00 	Base height area: 5.000000e+14
+16	Heron area: 0.000000e+00 	Base height area: 5.000000e+15
+17	Heron area: 0.000000e+00 	Base height area: 5.000000e+16
+18	Heron area: 0.000000e+00 	Base height area: 5.000000e+17
+19	Heron area: 0.000000e+00 	Base height area: 5.000000e+18
